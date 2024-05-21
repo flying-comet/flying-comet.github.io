@@ -69,19 +69,19 @@
 
         <h1>ATI VIII:</h1>
 
-        <img src="media/oak.png" width="32px"> Oak 600<br>
-        <img src="media/wood.png" width="32px"> Wood 600<br>
-        <img src="media/wooden_plank.png" width="32px"> Wooden Plank 600<br>
-        <img src="media/straw.png" width="32px"> Straw 600<br>
-        <img src="media/sand.png" width="32px"> Sand 600<br>
-        <img src="media/stone.png" width="32px"> Stone 600<br>
-        <img src="media/steel.png" width="32px"> Steel 600<br>
-        <img src="media/board.png" width="32px"> Board 600<br>
-        <img src="media/broom.png" width="32px"> Broom 600<br>
-        <img src="media/emberstone.png" width="32px"> Emberstone 600<br>
-        <img src="media/hammer.png" width="32px"> Hammer 600<br>
-        <img src="media/ladder.png" width="32px"> Ladder 600<br>
-        <img src="media/coal.png" width="32px"> Coal 600<br><br><br>
+        <img src="/icons/oak.png" width="32px"> Oak 600<br>
+        <img src="/icons/wood.png" width="32px"> Wood 600<br>
+        <img src="/icons/wooden_plank.png" width="32px"> Wooden Plank 600<br>
+        <img src="/icons/straw.png" width="32px"> Straw 600<br>
+        <img src="/icons/sand.png" width="32px"> Sand 600<br>
+        <img src="/icons/stone.png" width="32px"> Stone 600<br>
+        <img src="/icons/steel.png" width="32px"> Steel 600<br>
+        <img src="/icons/board.png" width="32px"> Board 600<br>
+        <img src="/icons/broom.png" width="32px"> Broom 600<br>
+        <img src="/icons/emberstone.png" width="32px"> Emberstone 600<br>
+        <img src="/icons/hammer.png" width="32px"> Hammer 600<br>
+        <img src="/icons/ladder.png" width="32px"> Ladder 600<br>
+        <img src="/icons/coal.png" width="32px"> Coal 600<br><br><br>
 
         <h1>ATI IX:</h1>
         <img src="media/apple.png" width="32px"> Apple 700<br>
@@ -133,33 +133,25 @@
     <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
     <script>
-      $("#checkAll").on("change", function() {
-        $(':checkbox').not(this).prop('checked', this.checked);
-      });
-
-      $(":checkbox").on("change", function(){
-        var checkboxValues = {};
-        $(":checkbox").each(function(){
-          checkboxValues[this.id] = this.checked;
-        });
-        $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
-      });
-
-      function repopulateCheckboxes(){
-        var checkboxValues = $.cookie('checkboxValues');
-        if(checkboxValues){
-          Object.keys(checkboxValues).forEach(function(element) {
-            var checked = checkboxValues[element];
-            $("#" + element).prop('checked', checked);
-          });
+$(document).ready( function(){
+   // read the current/previous setting
+    $("input.box[type=checkbox]").each(function() {
+        var name = $(this).attr('name');
+        if ($.cookie(name) && $.cookie(name) == "true") {
+            $(this).prop('checked', $.cookie(name));
         }
-      }
+    });
+   // event management
+    $("input.box[type=checkbox]").change(function() {
+        var name = $(this).attr("name");
+        $.cookie(name, $(this).prop('checked'), {
+            path: '/',
+            expires: 365
+        });
+    });
+});
 
-      $.cookie.json = true;
-      repopulateCheckboxes();
-    </script>
-
-
+</script>
 
 
 
