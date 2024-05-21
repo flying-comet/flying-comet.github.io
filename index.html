@@ -116,13 +116,6 @@
         <img src="media/goldray.png" width="32px"> Goldray 150<br><br><br>
     </div>
 
-
-
-    <script src="jquery-3.7.1.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/jquery.cookie/3.7.1/jquery.cookie.min.js"></script>
-
-
     <div>
         <label for="option1">catfish</label>
         <input type="checkbox" id="option1">
@@ -136,43 +129,41 @@
         <input type="checkbox" id="option3">
     </div>
 
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
     <script>
+      $("#checkAll").on("change", function() {
+        $(':checkbox').not(this).prop('checked', this.checked);
+      });
 
-        const overall = document.querySelector("#enchantment");
-        const ingredients = document.querySelectorAll("ul input");
-
-        overall.addEventListener("click", (e) => {
-            e.preventDefault();
+      $(":checkbox").on("change", function(){
+        var checkboxValues = {};
+        $(":checkbox").each(function(){
+          checkboxValues[this.id] = this.checked;
         });
+        $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
+      });
 
-        for (const ingredient of ingredients) {
-            ingredient.addEventListener("click", updateDisplay);
+      function repopulateCheckboxes(){
+        var checkboxValues = $.cookie('checkboxValues');
+        if(checkboxValues){
+          Object.keys(checkboxValues).forEach(function(element) {
+            var checked = checkboxValues[element];
+            $("#" + element).prop('checked', checked);
+          });
         }
+      }
 
-        function updateDisplay() {
-            let checkedCount = 0;
-            for (const ingredient of ingredients) {
-                if (ingredient.checked) {
-                    checkedCount++;
-                }
-            }
-
-            if (checkedCount === 0) {
-                overall.checked = false;
-                overall.indeterminate = false;
-            } else if (checkedCount === ingredients.length) {
-                overall.checked = true;
-                overall.indeterminate = false;
-            } else {
-                overall.checked = false;
-                overall.indeterminate = true;
-            }
-        }
+      $.cookie.json = true;
+      repopulateCheckboxes();
     </script>
+
+
+
+
+
+
 
 </body>
 
