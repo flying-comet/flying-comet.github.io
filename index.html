@@ -117,8 +117,8 @@
     </div>
 
     <div>
-        <label for="option1">catfish</label>
-        <input type="checkbox" id="option1">
+        <label for="catfish">catfish</label>
+        <input type="checkbox" id="catfish">
     </div>
     <div>
         <label for="option2">Option 2</label>
@@ -133,23 +133,30 @@
     <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.0/jquery.cookie.min.js"></script>
 
     <script>
-$(document).ready( function(){
-   // read the current/previous setting
-    $("input.box[type=checkbox]").each(function() {
-        var name = $(this).attr('name');
-        if ($.cookie(name) && $.cookie(name) == "true") {
-            $(this).prop('checked', $.cookie(name));
-        }
-    });
-   // event management
-    $("input.box[type=checkbox]").change(function() {
-        var name = $(this).attr("name");
-        $.cookie(name, $(this).prop('checked'), {
-            path: '/',
-            expires: 365
+   $("#checkAll").on("change", function() {
+        $(':checkbox').not(this).prop('checked', this.checked);
+      });
+
+      $(":checkbox").on("change", function(){
+        var checkboxValues = {};
+        $(":checkbox").each(function(){
+          checkboxValues[this.id] = this.checked;
         });
-    });
-});
+        $.cookie('checkboxValues', checkboxValues, { expires: 7, path: '/' })
+      });
+
+      function repopulateCheckboxes(){
+        var checkboxValues = $.cookie('checkboxValues');
+        if(checkboxValues){
+          Object.keys(checkboxValues).forEach(function(element) {
+            var checked = checkboxValues[element];
+            $("#" + element).prop('checked', checked);
+          });
+        }
+      }
+
+      $.cookie.json = true;
+      repopulateCheckboxes();
 
 </script>
 
