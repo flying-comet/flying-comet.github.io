@@ -13,6 +13,35 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
+$(function() {
+  if (sessionStorage.getItem('input')) {
+      var checks = JSON.parse(sessionStorage.getItem('input'));
+      $("input[type='checkbox']").prop('checked', function(i) {
+          return checks[i];
+      });
+  }
+});
+
+/* checkbox -- */
+$(document).ready(function() {
+  $("input[type='checkbox']").on('change', function() {
+      var id = $(this).val();
+      sessionStorage.setItem('input', JSON.stringify($("input[type='checkbox']").map(function() {
+          return this.checked;
+      }).get()));
+      sessionStorage.setItem('input',
+      if ($(this).is(':checked')) {
+          //data
+      } else {
+          //error
+      })
+  });
+});
+
+</script>
+    
+  <!--
+    <script>
         $("input.box").each(function() {
     var mycookie = $.cookie($(this).attr('name'));
     if (mycookie && mycookie == "true") {
@@ -27,7 +56,7 @@ $("input.box").change(function() {
 });
     </script>
     
-        <!-- <script>
+       <script>
     
     function setCookie(name, value, days) {
       var expires = "";
