@@ -13,7 +13,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
-        function setCookie(name, value, days) {
+        $("input.box").each(function() {
+    var mycookie = $.cookie($(this).attr('name'));
+    if (mycookie && mycookie == "true") {
+        $(this).prop('checked', mycookie);
+    }
+});
+$("input.box").change(function() {
+    $.cookie($(this).attr("name"), $(this).prop('checked'), {
+        path: '/',
+        expires: 365
+    });
+});
+    </script>
+    
+        <!-- <script>
+    
+    function setCookie(name, value, days) {
       var expires = "";
       if (days) {
         var date = new Date();
@@ -48,7 +64,8 @@ function rememberCheckboxState() {
     }
 
 rememberCheckboxState();
-    </script>
+  </script> -->
+   
   <!--<script src="/mycode.js"></script>-->
     
    
