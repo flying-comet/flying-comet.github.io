@@ -5,6 +5,8 @@ h1 {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url("/icons/raptor.jpg");
+    background-attachment: fixed;
+    background-size: 150px;
 
 }
 
