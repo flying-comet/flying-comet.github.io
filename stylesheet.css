@@ -13,6 +13,6 @@ html {
     max-width: 650px;
 }
 
-.container {
-    width: 500px;
+#container {
+    width: 80%;
 }
