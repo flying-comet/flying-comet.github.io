@@ -13,6 +13,7 @@ html {
     max-width: 650px;
 }
 
-#container {
+.item-list {
     width: 80%;
+    background-color: white;
 }
