@@ -1,15 +1,16 @@
 h1 {
     font-size: 30px;
+    align: center
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url("/icons/raptor.jpg");
-    min-height: 200%;
-background-repeat: repeat;
-background-attachment: fixed;
-background-position: center;
-background-size: cover;}
+    min-height: 112%;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;}
 }
 
 html {
@@ -18,6 +19,7 @@ html {
 }
 
 .item-list {
-    width: 90%;
+    text-align:center;
+    width: 83%;
     background-color: white;
 }
