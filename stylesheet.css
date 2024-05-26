@@ -5,8 +5,8 @@ h1 {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("/icons/raptor.jpg");
-    min-height: 112%;
+    background-image: url("/icons/buddybg.jpg");
+    min-height: 100%;
     background-repeat: repeat;
     background-attachment: fixed;
     background-position: center;
